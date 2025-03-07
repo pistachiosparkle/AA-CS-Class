@@ -72,7 +72,7 @@ int main(){
     cin >> principal;
     cout << "What is the interest rate?";
     cin >> rate;
-    cout << "How many times is this interest compounded yearly?";
+    cout << "How many times is this interest compounded yearly??";
     cin >> times_compounded;
 
     //enter the given formula
