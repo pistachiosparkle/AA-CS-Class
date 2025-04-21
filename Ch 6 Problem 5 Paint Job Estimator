@@ -1,0 +1,88 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+const double SQUARE_FEET_PER_GALLON = 110.0;
+const double LABOR_HOURS_PER_GALLON = 8.0;
+const double LABOR_COST_PER_HOUR = 25.0;
+int getNumberOfRooms();
+double getPaintPrice();
+double getTotalSquareFeet(int rooms);
+double calculateGallons(double totalSqFt);
+double calculateLaborHours(double gallons);
+double calculatePaintCost(double gallons, double paintPrice);
+double calculateLaborCharges(double laborHours);
+void displayResults(double gallons, double laborHours, double paintCost, double laborCost);
+int main() {
+    int rooms = getNumberOfRooms();
+    double paintPrice = getPaintPrice();
+    double totalSquareFeet = getTotalSquareFeet(rooms);
+    double gallons = calculateGallons(totalSquareFeet);
+    double laborHours = calculateLaborHours(gallons);
+    double paintCost = calculatePaintCost(gallons, paintPrice);
+    double laborCost = calculateLaborCharges(laborHours);
+    displayResults(gallons, laborHours, paintCost, laborCost);
+    return 0;
+}
+//get and validate number of rooms
+int getNumberOfRooms() {
+    int rooms;
+    do {
+        cout << "Enter the number of rooms to be painted (at least 1): ";
+        cin >> rooms;
+        if (rooms < 1)
+            cout << "Invalid input. Number of rooms must be at least 1.\n";
+    } while (rooms < 1);
+    return rooms;
+}
+//get and validate paint price
+double getPaintPrice() {
+    double price;
+    do {
+        cout << "Enter the price of the paint per gallon (at least $10.00): ";
+        cin >> price;
+        if (price < 10.00)
+            cout << "Invalid input. Price must be at least $10.00.\n";
+    } while (price < 10.00);
+    return price;
+}
+//get and validate total square footage
+double getTotalSquareFeet(int rooms) {
+    double squareFeet, total = 0;
+    for (int i = 1; i <= rooms; i++) {
+        do {
+            cout << "Enter the square feet of wall space for room " << i << ": ";
+            cin >> squareFeet;
+            if (squareFeet < 0)
+                cout << "Invalid input. Square feet cannot be negative.\n";
+        } while (squareFeet < 0);
+        total += squareFeet;
+    }
+    return total;
+}
+//calculate gallons of paint needed
+double calculateGallons(double totalSqFt) {
+    return ceil(totalSqFt / SQUARE_FEET_PER_GALLON);
+}
+//calculate labor hours
+double calculateLaborHours(double gallons) {
+    return gallons * LABOR_HOURS_PER_GALLON;
+}
+//calculate paint cost
+double calculatePaintCost(double gallons, double paintPrice) {
+    return gallons * paintPrice;
+}
+//calculate labor cost
+double calculateLaborCharges(double laborHours) {
+    return laborHours * LABOR_COST_PER_HOUR;
+}
+//display results
+void displayResults(double gallons, double laborHours, double paintCost, double laborCost) {
+    double totalCost = paintCost + laborCost;
+    cout << fixed << setprecision(2);
+    cout << "\n---- Paint Job Estimate ----\n";
+    cout << "Gallons of paint required: " << gallons << endl;
+    cout << "Hours of labor required:   " << laborHours << endl;
+    cout << "Cost of the paint:         $" << paintCost << endl;
+    cout << "Labor charges:             $" << laborCost << endl;
+    cout << "Total cost of the job:     $" << totalCost << endl;
+}

@@ -1,0 +1,17 @@
+#include <iostream>
+#include <iomanip> 
+using namespace std;
+//convert Fahrenheit to Celsius
+double celsius(int fahrenheit) {
+    return 5.0 / 9.0 * (fahrenheit - 32);
+}
+
+int main() {
+    cout << setw(12) << "Fahrenheit" << setw(12) << "Celsius" << endl;
+    cout << "-------" << endl;
+    for (int f = 0; f <= 20; ++f) {
+        double c = celsius(f);
+        cout << setw(12) << f << setw(12) << fixed << setprecision(2) << c << endl;
+    }
+    return 0;
+}

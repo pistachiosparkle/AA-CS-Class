@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+//calculate the new population
+double calculatePopulation(double currentPopulation, double birthRate, double deathRate) {
+    return currentPopulation + (birthRate * currentPopulation) - (deathRate * currentPopulation);
+}
+int main() {
+    double startingPopulation;
+    double birthRate;
+    double deathRate;
+    int years;
+    //input validation for starting population
+    do {
+        cout << "Enter the starting population size (must be 2 or more): ";
+        cin >> startingPopulation;
+        if (startingPopulation < 2)
+            cout << "Invalid input. Population must be at least 2.\n";
+    } while (startingPopulation < 2);
+    //input validation for birth rate
+    do {
+        cout << "Enter the annual birth rate (as a decimal, e.g., 0.05 for 5%): ";
+        cin >> birthRate;
+        if (birthRate < 0)
+            cout << "Invalid input. Birth rate cannot be negative.\n";
+    } while (birthRate < 0);
+    //input validation for death rate
+    do {
+        cout << "Enter the annual death rate (as a decimal, e.g., 0.02 for 2%): ";
+        cin >> deathRate;
+        if (deathRate < 0)
+            cout << "Invalid input. Death rate cannot be negative.\n";
+    } while (deathRate < 0);
+    //input validation for number of years
+    do {
+        cout << "Enter the number of years to display (must be 1 or more): ";
+        cin >> years;
+        if (years < 1)
+            cout << "Invalid input. Years must be at least 1.\n";
+    } while (years < 1);
+    //answering the main question: displaying the size of a population for any number of years
+    double currentPopulation = startingPopulation;
+    for (int year = 1; year <= years; year++) {
+        currentPopulation = calculatePopulation(currentPopulation, birthRate, deathRate);
+        cout << "Year " << year << ": Population = " << static_cast<int>(currentPopulation) << endl;
+    }
+    return 0;
+}
