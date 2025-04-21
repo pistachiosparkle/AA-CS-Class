@@ -82,7 +82,7 @@ void displayResults(double gallons, double laborHours, double paintCost, double 
     cout << "\n---- Paint Job Estimate ----\n";
     cout << "Gallons of paint required: " << gallons << endl;
     cout << "Hours of labor required:   " << laborHours << endl;
-    cout << "Cost of the paint:         $" << paintCost << endl;
+    cout << "Cost of the paint in dollars:         $" << paintCost << endl;
     cout << "Labor charges:             $" << laborCost << endl;
     cout << "Total cost of the job:     $" << totalCost << endl;
 }
